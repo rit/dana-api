@@ -1,3 +1,4 @@
 iiif
 .DS_Store
 *.pyc
+.cache
