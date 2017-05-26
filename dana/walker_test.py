@@ -7,7 +7,11 @@ def test_walk(dbsession):
     walk('./dana/fixtures/szeemann.json', dbsession)
 
     all = dbsession.query(Collection).all()
-    assert len(all) == 1
+    assert len(all) == 11
+
+    szeemann =dbsession.query(Collection).get('2011m30')
+    assert 'Szeemann' in szeemann.label
+
 
 def test_extract_slug():
     url = "http://data.getty.edu/iiif/research/archives/2011m30/collection.json"

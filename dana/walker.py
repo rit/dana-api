@@ -25,8 +25,8 @@ def extract_slug(url):
 
 def collection_slugs(doc):
     collections = doc.get('collections', [])
-    slugs = [extract_slug(c['@id']) for c in collections]
-    return slugs
+    pairs = [(extract_slug(c['@id']), c['label']) for c in collections]
+    return pairs
 
 
 def load_json(path):
@@ -40,6 +40,13 @@ def walk(path, dbsession):
     slug = extract_slug(doc['@id'])
     collection = Collection(slug=slug, label=label, doc=doc)
     dbsession.add(collection)
+
+    child_collections = collection_slugs(doc)
+    for child in child_collections:
+        child_slug, child_label = child
+        coll = Collection(slug=child_slug, label=child_label, parent_slug=slug, doc={})
+        dbsession.add(coll)
+
     dbsession.commit()
 
     # child_slugs = collection_slugs(source)
