@@ -23,10 +23,11 @@ def extract_slug(url):
     return None
 
 
-def collection_slugs(doc):
+def children_collection(doc):
     collections = doc.get('collections', []) + doc.get('manifests', [])
-    vaules = [dict(slug=extract_slug(c['@id']), label=c['label'], type=c['@type']) for c in collections]
-    return vaules
+    kws = [ dict(slug=extract_slug(c['@id']), label=c['label'], type=c['@type'])
+            for c in collections]
+    return kws
 
 
 def load_json(path):
@@ -42,9 +43,9 @@ def walk(path, dbsession):
     collection = Collection(slug=slug, label=label, type=type, doc=doc)
     dbsession.merge(collection)
 
-    child_collections = collection_slugs(doc)
-    for child in child_collections:
-        coll = Collection(parent_slug=slug, doc={}, **child)
+    children = children_collection(doc)
+    for kw in children:
+        coll = Collection(parent_slug=slug, doc={}, **kw)
         dbsession.merge(coll)
 
     dbsession.commit()

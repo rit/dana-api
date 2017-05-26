@@ -12,6 +12,7 @@ def test_walk(dbsession):
     szeemann =dbsession.query(Collection).get('2011m30')
     assert 'Szeemann' in szeemann.label
 
+    # Make sure it does not raise error
     walk('./dana/fixtures/szeemann.json', dbsession)
 
 
