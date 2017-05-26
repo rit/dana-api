@@ -7,6 +7,8 @@ import time
 
 
 from sqlalchemy import Table
+from sqlalchemy.dialects.postgresql import insert
+
 
 from abacus.db import Base
 from abacus.db import Session
@@ -44,15 +46,26 @@ def walk(path, dbsession):
     label = doc['label']
     slug = extract_slug(doc['@id'])
     type = doc['@type']
-    collection = Collection(slug=slug, label=label, type=type, doc=doc)
-    dbsession.merge(collection)
-
-    children = children_collection(doc)
-    for kw in children:
-        coll = Collection(parent_slug=slug, doc={}, **kw)
-        dbsession.merge(coll)
-
+    collection = dict(slug=slug, label=label, type=type, doc=doc)
+    root = insert(Collection).values(collection)
+    root = root.on_conflict_do_update(
+                constraint='collections_pkey',
+                set_=dict(slug=root.excluded.slug))
+    dbsession.execute(root)
     dbsession.commit()
+
+    colls = [
+        dict(parent_slug=slug, doc={}, **kw)
+        for kw in children_collection(doc)
+    ]
+    if len(colls):
+        sql = insert(Collection).values(colls)
+        stmt = sql.on_conflict_do_update(
+            constraint='collections_pkey',
+            set_=dict(slug=sql.excluded.slug)
+        )
+        dbsession.execute(stmt)
+        dbsession.commit()
 
 
 if __name__ == '__main__':
