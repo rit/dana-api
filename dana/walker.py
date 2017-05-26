@@ -13,7 +13,7 @@ class Collection(Base):
     __table__ = Table('collections', metadata, autoload=True)
 
 
-pattern = re.compile(r".+/archives/([.\w-]+)/collection.json$")
+pattern = re.compile(r".+/archives/([.\w-]+)/(collection|manifest).json$")
 
 
 def extract_slug(url):
@@ -24,9 +24,9 @@ def extract_slug(url):
 
 
 def collection_slugs(doc):
-    collections = doc.get('collections', [])
-    pairs = [(extract_slug(c['@id']), c['label']) for c in collections]
-    return pairs
+    collections = doc.get('collections', []) + doc.get('manifests', [])
+    vaules = [dict(slug=extract_slug(c['@id']), label=c['label'], type=c['@type']) for c in collections]
+    return vaules
 
 
 def load_json(path):
@@ -38,13 +38,13 @@ def walk(path, dbsession):
     doc = load_json(path)
     label = doc['label']
     slug = extract_slug(doc['@id'])
-    collection = Collection(slug=slug, label=label, doc=doc)
+    type = doc['@type']
+    collection = Collection(slug=slug, label=label, type=type, doc=doc)
     dbsession.merge(collection)
 
     child_collections = collection_slugs(doc)
     for child in child_collections:
-        child_slug, child_label = child
-        coll = Collection(slug=child_slug, label=child_label, parent_slug=slug, doc={})
+        coll = Collection(parent_slug=slug, doc={}, **child)
         dbsession.merge(coll)
 
     dbsession.commit()

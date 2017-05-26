@@ -27,4 +27,3 @@ def test_extract_slug():
 
     url = "http://data.getty.edu/iiif/research/archives/2011_m30/collection.json"
     assert extract_slug(url) == '2011_m30'
-
