@@ -1,6 +1,10 @@
+from __future__ import print_function
 import json
 import os
 import re
+import sys
+import time
+
 
 from sqlalchemy import Table
 
@@ -51,9 +55,10 @@ def walk(path, dbsession):
     dbsession.commit()
 
 
-import sys
-
 if __name__ == '__main__':
     dbsession = Session()
+    start = time.time()
     for line in sys.stdin:
         walk(line.strip(), dbsession)
+    delta = time.time() - start
+    print('Done in {:f} seconds'.format(delta))
