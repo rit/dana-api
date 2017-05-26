@@ -12,6 +12,8 @@ def test_walk(dbsession):
     szeemann =dbsession.query(Collection).get('2011m30')
     assert 'Szeemann' in szeemann.label
 
+    walk('./dana/fixtures/szeemann.json', dbsession)
+
 
 def test_extract_slug():
     url = "http://data.getty.edu/iiif/research/archives/2011m30/collection.json"

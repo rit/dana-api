@@ -39,20 +39,20 @@ def walk(path, dbsession):
     label = doc['label']
     slug = extract_slug(doc['@id'])
     collection = Collection(slug=slug, label=label, doc=doc)
-    dbsession.add(collection)
+    dbsession.merge(collection)
 
     child_collections = collection_slugs(doc)
     for child in child_collections:
         child_slug, child_label = child
         coll = Collection(slug=child_slug, label=child_label, parent_slug=slug, doc={})
-        dbsession.add(coll)
+        dbsession.merge(coll)
 
     dbsession.commit()
 
-    # child_slugs = collection_slugs(source)
 
 import sys
 
 if __name__ == '__main__':
+    dbsession = Session()
     for line in sys.stdin:
-        print line.strip()
+        walk(line.strip(), dbsession)
