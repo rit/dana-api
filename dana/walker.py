@@ -2,38 +2,47 @@ import json
 import os
 import re
 
+from sqlalchemy import Table
+
+from abacus.db import Base
+from abacus.db import Session
+from abacus.db import metadata
+
+
+class Collection(Base):
+    __table__ = Table('collections', metadata, autoload=True)
+
+
 pattern = re.compile(r".+/archives/([.\w-]+)/collection.json$")
 
-def slugify(url):
+
+def extract_slug(url):
     matched = pattern.match(url)
     if matched:
         return matched.group(1)
-    return 'not found'
+    return None
 
-# def get_collection_ids(file_name):
-#     with open(file_name) as f:
-#         data = json.load(f)
-#         collections = data.get('collections', [])
-#         ids = [c['@id'] for c in collections]
-#         return ids
-# 
-# def copy(src):
-#     dst = './json' + src.split('pretty')[-1]
-#     if not os.path.exists(os.path.dirname(dst)):
-#         os.makedirs(os.path.dirname(dst))
-#     shutil.copy(src, dst)
-# 
-# 
-# def walk(root):
-#     paths = map(url_to_local_path, get_collection_ids(root))
-#     for p in paths:
-#         if os.path.exists(p):
-#             # copy(p) we don't need it anymore
-#             walk(p)
-#         else:
-#             print 'not exist'
-# 
-# walk(file_name)
+
+def collection_slugs(doc):
+    collections = doc.get('collections', [])
+    slugs = [extract_slug(c['@id']) for c in collections]
+    return slugs
+
+
+def load_json(path):
+    with open(path) as f:
+        return json.load(f)
+
+
+def walk(path, dbsession):
+    doc = load_json(path)
+    label = doc['label']
+    slug = extract_slug(doc['@id'])
+    collection = Collection(slug=slug, label=label, doc=doc)
+    dbsession.add(collection)
+    dbsession.commit()
+
+    # child_slugs = collection_slugs(source)
 
 import sys
 
