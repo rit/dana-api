@@ -1,8 +1,8 @@
 db-up:
-	alembic upgrade head
+	PYTHONPATH=. alembic upgrade head
 
 db-down:
-	alembic downgrade -1
+	PYTHONPATH=. alembic downgrade -1
 
 db-both: db-up db-down
 
