@@ -55,7 +55,7 @@ def walk(path, dbsession):
     dbsession.commit()
 
     colls = [
-        dict(parent_slug=slug, doc={}, **kw)
+        dict(parent_slug=slug, **kw)
         for kw in children_collection(doc)
     ]
     if len(colls):
