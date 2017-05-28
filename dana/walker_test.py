@@ -2,18 +2,74 @@ from .walker import walk
 from .walker import Collection
 from .walker import extract_slug
 
+from operator import attrgetter
 
-def test_walk(dbsession):
+szeemann_slug = '2011m30'
+series_slug = '2011m30_ref5903_vld'
+
+def test_walk_doc(dbsession):
     walk('./dana/fixtures/szeemann.json', dbsession)
+    res = dbsession.query(Collection).get(szeemann_slug)
+    assert 'Szeemann' in res.label
+    assert res.slug == szeemann_slug
+    assert res.parent_slug == None
+    assert szeemann_slug in res.doc['@id']
 
-    all = dbsession.query(Collection).all()
-    assert len(all) == 11
+    children = dbsession.query(Collection).filter_by(parent_slug=szeemann_slug).all()
+    assert len(children) == 10
+    assert filter(bool, (map(attrgetter('doc'), children))) == []
+    assert set(map(attrgetter('parent_slug'), children)) == set([szeemann_slug])
+    assert len(set(map(attrgetter('slug'), children))) == 10
 
-    szeemann =dbsession.query(Collection).get('2011m30')
-    assert 'Szeemann' in szeemann.label
 
-    # Make sure it does not raise error
+def test_walk_doc_update(dbsession):
+    count = dbsession.query(Collection).count()
+    assert count == 0
+
     walk('./dana/fixtures/szeemann.json', dbsession)
+    walk('./dana/fixtures/szeemann_dup.json', dbsession)
+    res = dbsession.query(Collection).get(szeemann_slug)
+    assert 'upserted' in res.label
+
+    children = dbsession.query(Collection).filter_by(parent_slug=szeemann_slug).all()
+    assert len(children) == 10
+
+    walk('./dana/fixtures/szeemann.json', dbsession)
+    series = dbsession.query(Collection).get(series_slug)
+    assert 'Series I' in series.label
+    assert szeemann_slug == series.parent_slug
+
+
+def test_walk_doc_child_update(dbsession):
+    count = dbsession.query(Collection).count()
+    assert count == 0
+
+    walk('./dana/fixtures/szeemann.json', dbsession)
+    walk('./dana/fixtures/series.json', dbsession)
+    series = dbsession.query(Collection).get(series_slug)
+    assert 'Series I' in series.label
+    assert szeemann_slug == series.parent_slug
+    children = dbsession.query(Collection).filter_by(parent_slug=szeemann_slug).all()
+    assert len(children) == 10
+
+def test_walk_doc_child_update_before_parent(dbsession):
+    count = dbsession.query(Collection).count()
+    assert count == 0
+
+    walk('./dana/fixtures/series.json', dbsession)
+    walk('./dana/fixtures/szeemann.json', dbsession)
+    walk('./dana/fixtures/series.json', dbsession)
+    walk('./dana/fixtures/szeemann.json', dbsession)
+    series = dbsession.query(Collection).get(series_slug)
+    assert 'Series I' in series.label
+    assert szeemann_slug == series.parent_slug
+    children = dbsession.query(Collection).filter_by(parent_slug=szeemann_slug).all()
+    assert len(children) == 10
+
+    series = dbsession.query(Collection).get('2011m30_ref5903_vld')
+    assert 'Series I' in series.label
+    assert '2011m30' == series.parent_slug
+    assert series_slug in series.doc['@id']
 
 
 def test_extract_slug():

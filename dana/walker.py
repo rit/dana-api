@@ -46,25 +46,33 @@ def walk(path, dbsession):
     label = doc['label']
     slug = extract_slug(doc['@id'])
     type = doc['@type']
-    collection = dict(slug=slug, label=label, type=type, doc=doc)
-    root = insert(Collection).values(collection)
+    upsert_data = dict(slug=slug, label=label, type=type, doc=doc)
+    insert_data = upsert_data.copy()
+    insert_data.update(parent_slug=None)
+    root = insert(Collection).values(insert_data)
     root = root.on_conflict_do_update(
                 constraint='collections_pkey',
-                set_=dict(slug=root.excluded.slug))
+                # We update every columns except 'parent_slug'
+                set_=dict(upsert_data)
+            )
     dbsession.execute(root)
     dbsession.commit()
 
-    colls = [
-        dict(parent_slug=slug, **kw)
+    upsert_children(doc, slug, dbsession)
+
+
+def upsert_children(doc, parent_slug, dbsession):
+    pairs = [
+        dict(parent_slug=parent_slug, **kw)
         for kw in children_collection(doc)
     ]
-    if len(colls):
-        sql = insert(Collection).values(colls)
-        stmt = sql.on_conflict_do_update(
+    if len(pairs):
+        sql = insert(Collection).values(pairs)
+        sql = sql.on_conflict_do_update(
             constraint='collections_pkey',
-            set_=dict(slug=sql.excluded.slug)
+            set_=dict(parent_slug=sql.excluded.parent_slug) # We only update the parent slug
         )
-        dbsession.execute(stmt)
+        dbsession.execute(sql)
         dbsession.commit()
 
 
