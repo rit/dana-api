@@ -1,0 +1,6 @@
+{
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "http://data.getty.edu/iiif/research/archives/2011m30/collection.json",
+  "@type": "sc:Collection",
+  "label": "upserted"
+}
