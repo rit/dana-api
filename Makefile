@@ -1,3 +1,6 @@
+pytest:
+	PYTHONPATH=. ABACUS_BUILD_TYPE=test pytest --cov-report term-missing --cov=dana dana
+
 db-up:
 	PYTHONPATH=. alembic upgrade head
 
@@ -12,3 +15,6 @@ trim:
 import:
 # Start a parallel job for every 500 lines of input from find
 	find iiif -type f -name '*.json' | parallel --pipe -N500 python -m dana.walker
+
+import_series:
+	find iiif -type f -name '*.json' | python -m dana.walker
