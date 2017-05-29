@@ -1,10 +1,10 @@
 from __future__ import print_function
+from itertools import count
 import json
 import os
 import re
 import sys
 import time
-
 
 from sqlalchemy import Table
 from sqlalchemy.dialects.postgresql import insert
@@ -31,7 +31,8 @@ def extract_slug(url):
 
 def children_collection(doc):
     collections = doc.get('collections', []) + doc.get('manifests', [])
-    kws = [ dict(slug=extract_slug(c['@id']), label=c['label'], type=c['@type'])
+    step = count()
+    kws = [ dict(slug=extract_slug(c['@id']), position=next(step), label=c['label'], type=c['@type'])
             for c in collections]
     return kws
 
@@ -70,7 +71,9 @@ def upsert_children(doc, parent_slug, dbsession):
         sql = insert(Collection).values(pairs)
         sql = sql.on_conflict_do_update(
             constraint='collections_pkey',
-            set_=dict(parent_slug=sql.excluded.parent_slug) # We only update the parent slug
+            # We only update the parent slug and position
+            set_=dict(parent_slug=sql.excluded.parent_slug,
+                position=sql.excluded.position)
         )
         dbsession.execute(sql)
         dbsession.commit()
