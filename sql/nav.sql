@@ -1,22 +1,60 @@
-with recursive parent(slug, parent_slug, label, position, depth) as (
-  select c.slug, c.parent_slug, c.label, c.position, 1
-  from collections c
-  where parent_slug = '2011m30'
-union all
-  select c.slug, c.parent_slug, c.label, c.position, p.depth + 1
-  from collections c, parent p
-  where c.parent_slug = p.slug
-  and c.type = 'sc:Collection'
-), 
-
-series(parent_slug) as (
-  select parent_slug, depth, count(parent_slug) from parent
-  where parent.depth < 3
-  group by parent_slug, depth
-  having parent.count < 21
+WITH RECURSIVE parent (slug,
+    parent_slug,
+    label,
+    position,
+    depth)
+AS (
+    SELECT
+        c.slug,
+        c.parent_slug,
+        c.label,
+        c.position,
+        1
+    FROM
+        collections c
+    WHERE
+        parent_slug = '2011m30'
+    UNION ALL
+    SELECT
+        c.slug,
+        c.parent_slug,
+        c.label,
+        c.position,
+        p.depth + 1
+    FROM
+        collections c,
+        parent p
+    WHERE
+        c.parent_slug = p.slug
+        AND c.type = 'sc:Collection'), series (parent_slug)
+AS (
+    SELECT
+        parent_slug, depth, count(parent_slug)
+    FROM
+        parent
+    WHERE
+        parent.depth < 3
+    GROUP BY
+        parent_slug,
+        depth
+    HAVING
+        -- If the collection has more than 21 children,
+        -- assume it's the leaf collection
+        parent.count < 21
 )
+SELECT
+    p.position AS pos,
+    p.slug,
+    p.parent_slug,
+    p.label,
+    p.depth
+FROM
+    parent p,
+    series
+WHERE
+    p.parent_slug = series.parent_slug
+ORDER BY
+    depth,
+    p.parent_slug,
+    position;
 
-select p.position as pos, p.slug, p.parent_slug, p.label, p.depth from parent p, series
-where p.parent_slug = series.parent_slug
-order by depth, p.parent_slug, position
-;
