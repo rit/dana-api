@@ -4,7 +4,7 @@ import sys
 import json
 import time
 
-from abacus.db import Session 
+from abacus.db import Session
 from dana.walker import Collection
 from dana.model import Navtree, NavtreeEncoder
 
