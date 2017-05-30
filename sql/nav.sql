@@ -20,12 +20,12 @@ AS (
         c.parent_slug,
         c.label,
         c.position,
-        p.depth + 1
+        s.depth + 1
     FROM
         collections c,
-        series p
+        series s
     WHERE
-        c.parent_slug = p.slug
+        c.parent_slug = s.slug
         AND c.type = 'sc:Collection'), collection_series (parent_slug)
 AS (
     SELECT
@@ -43,18 +43,18 @@ AS (
         series.count < 21
 )
 SELECT
-    p.position AS pos,
-    p.slug,
-    p.parent_slug,
-    p.label,
-    p.depth
+    s.position AS pos,
+    s.slug,
+    s.parent_slug,
+    s.label,
+    s.depth
 FROM
-    series p,
+    series s,
     collection_series
 WHERE
-    p.parent_slug = collection_series.parent_slug
+    s.parent_slug = collection_series.parent_slug
 ORDER BY
     depth,
-    p.parent_slug,
+    s.parent_slug,
     position;
 
