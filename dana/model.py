@@ -6,11 +6,12 @@ from dana.walker import Collection
 
 class Navtree(object):
 
-    def __init__(self, collection):
+    def __init__(self, collection, level=0):
         self.label = collection.label
         self.slug = collection.slug
-        if len(collection.children) < 21:
-            self.children = map(Navtree, collection.children)
+        if level < 2 and len(collection.children) < 21:
+            level += 1
+            self.children = [Navtree(child, level) for child in collection.children]
         else:
             self.children = []
 
