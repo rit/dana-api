@@ -18,3 +18,6 @@ import:
 
 import_series:
 	find iiif -type f -name '*.json' | python -m dana.walker
+	
+rsync-output:
+	rsync -ruvz output/ ~/repo/dana.git/static
