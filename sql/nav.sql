@@ -1,4 +1,4 @@
-WITH RECURSIVE parent (slug,
+WITH RECURSIVE series (slug,
     parent_slug,
     label,
     position,
@@ -23,24 +23,24 @@ AS (
         p.depth + 1
     FROM
         collections c,
-        parent p
+        series p
     WHERE
         c.parent_slug = p.slug
-        AND c.type = 'sc:Collection'), series (parent_slug)
+        AND c.type = 'sc:Collection'), collection_series (parent_slug)
 AS (
     SELECT
         parent_slug, depth, count(parent_slug)
     FROM
-        parent
+        series
     WHERE
-        parent.depth < 3
+        series.depth < 3
     GROUP BY
         parent_slug,
         depth
     HAVING
         -- If the collection has more than 21 children,
         -- assume it's the leaf collection
-        parent.count < 21
+        series.count < 21
 )
 SELECT
     p.position AS pos,
@@ -49,10 +49,10 @@ SELECT
     p.label,
     p.depth
 FROM
-    parent p,
-    series
+    series p,
+    collection_series
 WHERE
-    p.parent_slug = series.parent_slug
+    p.parent_slug = collection_series.parent_slug
 ORDER BY
     depth,
     p.parent_slug,
