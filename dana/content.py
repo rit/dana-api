@@ -13,7 +13,7 @@ def gendoc(slug, dbsession):
     collections = dbsession.query(ContentCollection)\
             .filter_by(parent_slug=slug).order_by('position')
     docs = [
-        dict(slug=c.slug, label=c.label, metadata=c.doc["metadata"])
+        dict(slug=c.slug, label=c.label, metadata=c.doc.get("metadata", []))
         for c in collections
     ]
     doc['manifests'] = []
