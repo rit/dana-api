@@ -9,14 +9,17 @@ from dana.walker import Collection
 
 
 def gendoc(slug, dbsession):
+    doc = dbsession.query(Collection).get(slug).doc
     collections = dbsession.query(Collection).filter_by(parent_slug=slug).all()
     docs = [
         dict(slug=c.slug, label=c.label, metadata=c.doc["metadata"])
         for c in collections
     ]
+    doc['manifests'] = []
+    doc['collections'] = docs
     fname = 'output/content/{}.json'.format(slug)
     with open(fname, 'w') as f:
-        json.dump({ "collections": docs }, f, indent=4, separators=(',', ': '))
+        json.dump(doc, f, indent=4, separators=(',', ': '))
 
 
 if __name__ == '__main__':
