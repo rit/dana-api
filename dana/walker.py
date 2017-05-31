@@ -16,6 +16,10 @@ from abacus.db import Session
 from abacus.db import metadata
 
 
+class ContentCollection(Base):
+    __table__ = Table('collections', metadata, autoload=True)
+
+
 class Collection(Base):
     __table__ = Table('collections', metadata, autoload=True)
 
