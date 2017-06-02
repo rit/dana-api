@@ -15,7 +15,11 @@ from dana.model import Navtree, NavtreeEncoder
 
 
 # Collection = namedtuple('Collection', "slug, parent_slug, label, children")
-Node = namedtuple('Node', 'row, children')
+class Node(object):
+
+    def __init__(self, row):
+        self.row = row
+        self.children = OrderedDict()
 
 
 def sqltxt(fpath):
@@ -38,7 +42,7 @@ def navtree(rows, top):
         if row.depth > depth:
             depth += 1
             cur_level = parent.children
-        child = Node(row=row, children=OrderedDict())
+        child = Node(row)
         parent = cur_level[child.row.parent_slug]
         append_child(parent, child)
 
