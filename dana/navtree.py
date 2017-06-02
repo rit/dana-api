@@ -1,5 +1,3 @@
-# Generate navtree json file for a collection
-
 from collections import OrderedDict
 from collections import defaultdict
 from collections import namedtuple
@@ -10,16 +8,26 @@ import time
 from abacus.db import Session
 from sqlalchemy.sql import text
 
-from dana.walker import Collection
-from dana.model import Navtree, NavtreeEncoder
+from dana.walker import Collection, Collection
 
 
-# Collection = namedtuple('Collection', "slug, parent_slug, label, children")
 class Node(object):
 
     def __init__(self, row):
         self.row = row
         self.children = OrderedDict()
+
+
+class NodeEncoder(json.JSONEncoder):
+
+    def default(self, obj):
+
+        if isinstance(obj, Node):
+            # obj.row can be RowProxy or Collection
+            return dict(label=obj.row.label, slug=obj.row.slug,
+                    children=obj.children.values())
+
+        return json.JSONEncoder.default(self, obj)
 
 
 def sqltxt(fpath):
@@ -51,10 +59,12 @@ def navtree(rows, top):
 
 def gendoc(slug, dbsession):
     root = dbsession.query(Collection).get(slug)
-    navtree = Navtree(root)
+    sql =  sqltxt('sql/navtree.bound.sql')
+    rows = dbsession.execute(sql, dict(slug=slug))
+    tree = navtree(rows, Node(row=root))
     fname = 'output/navtree/{}.json'.format(slug)
     with open(fname, 'w') as f:
-        json.dump(navtree, f, indent=4, separators=(',', ': '), cls=NavtreeEncoder)
+        json.dump(tree[slug], f, indent=4, separators=(',', ': '), cls=NodeEncoder)
 
 
 if __name__ == '__main__':

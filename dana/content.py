@@ -5,12 +5,12 @@ import json
 import time
 
 from abacus.db import Session
-from dana.walker import ContentCollection
+from dana.walker import Collection
 
 
 def gendoc(slug, dbsession):
-    doc = dbsession.query(ContentCollection).get(slug).doc
-    collections = dbsession.query(ContentCollection)\
+    doc = dbsession.query(Collection).get(slug).doc
+    collections = dbsession.query(Collection)\
             .filter_by(parent_slug=slug).order_by('position')
     docs = [
         dict(slug=c.slug, label=c.label, metadata=c.doc.get("metadata", []))

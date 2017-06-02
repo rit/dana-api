@@ -1,29 +1,17 @@
 import json
 
-from dana.navtree import sqltxt, navtree, Node
-from dana.walker import ContentCollection
-
 from mock import Mock
 from toolz.itertoolz import first
 
-
-
-class NamedDoc(json.JSONEncoder):
-
-    def default(self, obj):
-
-        if isinstance(obj, Node):
-            return dict(label=obj.row.label, slug=obj.row.slug,
-                    children=obj.children.values())
-
-        return json.JSONEncoder.default(self, obj)
+from dana.navtree import sqltxt, navtree, Node, NodeEncoder
+from dana.walker import Collection
 
 
 def test_navtree(dbsession):
     slug = '2011m30'
     sql =  sqltxt('sql/navtree.bound.sql')
     rows = dbsession.execute(sql, dict(slug=slug))
-    row = dbsession.query(ContentCollection).get(slug)
+    row = dbsession.query(Collection).get(slug)
     top = Node(row=row)
     root = navtree(rows, top)
     assert len(root) == 1
@@ -47,10 +35,10 @@ def test_navtree_json(dbsession):
     slug = '2011m30'
     sql =  sqltxt('sql/navtree.bound.sql')
     rows = dbsession.execute(sql, dict(slug=slug))
-    row = dbsession.query(ContentCollection).get(slug)
+    row = dbsession.query(Collection).get(slug)
     top = Node(row=row)
     tree = navtree(rows, top)
-    doc = json.dumps(tree, cls=NamedDoc)
+    doc = json.dumps(tree, cls=NodeEncoder)
     ddoc = json.loads(doc)
     assert 'Szeemann' in ddoc[slug]['label']
     assert len(ddoc[slug]['children']) == 10
@@ -66,7 +54,7 @@ def test_node_json():
     row.slug = 'hi'
     row.label = 'label'
     node = Node(row)
-    doc = json.dumps(node, cls=NamedDoc)
+    doc = json.dumps(node, cls=NodeEncoder)
     keys = json.loads(doc).keys()
     assert 'label' in keys
     assert 'slug' in keys

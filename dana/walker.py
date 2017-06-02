@@ -16,21 +16,8 @@ from abacus.db import Session
 from abacus.db import metadata
 
 
-class ContentCollection(Base):
-    __table__ = Table('collections', metadata, autoload=True)
-
-
 class Collection(Base):
     __table__ = Table('collections', metadata, autoload=True)
-
-    children = relationship('Collection',
-            foreign_keys='Collection.slug',
-            remote_side='Collection.parent_slug',
-            primaryjoin='Collection.slug==Collection.parent_slug',
-            order_by='Collection.position',
-            lazy='joined', join_depth=2,
-            uselist=True,
-            backref='parent')
 
 
 pattern = re.compile(r".+/archives/([.\w-]+)/(collection|manifest).json$")
