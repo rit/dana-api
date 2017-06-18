@@ -1,0 +1,4 @@
+Running sql
+
+trggr.py '.sql$' | xargs -L 1 psql -U danapg dana-ui-api-dev -f
+
