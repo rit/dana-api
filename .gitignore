@@ -4,3 +4,4 @@ iiif
 .cache
 .coverage
 output
+*.tmp.sql
