@@ -11,9 +11,9 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import insert
 
 
-from abacus.db import Base
-from abacus.db import Session
-from abacus.db import metadata
+from salsa import Base
+from salsa import Session
+from salsa import metadata
 
 
 class Collection(Base):

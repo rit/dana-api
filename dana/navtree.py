@@ -5,7 +5,7 @@ import json
 import sys
 import time
 
-from abacus.db import Session
+from salsa import Session
 from sqlalchemy.sql import text
 
 from dana.walker import Collection, Collection
