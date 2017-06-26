@@ -1,11 +1,11 @@
 pytest:
-	PYTHONPATH=. ABACUS_BUILD_TYPE=test pytest --cov-report term-missing --cov=dana dana
+	YARGS_ENV=test pytest --cov-report term-missing --cov=dana dana
 
 db-up:
-	PYTHONPATH=. alembic upgrade head
+	alembic upgrade head
 
 db-down:
-	PYTHONPATH=. alembic downgrade -1
+	alembic downgrade -1
 
 db-both: db-up db-down
 
