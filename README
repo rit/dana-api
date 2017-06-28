@@ -1,4 +1,11 @@
+Starting the api server in dev mode:
+====================================
+
+  FLASK_APP=dana.api.server python -m flask run --reload
+
+
+
 Running sql
+===========
 
-trggr.py '.sql$' | xargs -L 1 psql -U danapg dana-ui-api-dev -f
-
+  trggr.py '.sql$' | xargs -L 1 psql -U danapg dana-ui-api-dev -f
