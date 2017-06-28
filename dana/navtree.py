@@ -8,7 +8,7 @@ import time
 from salsa import Session
 from sqlalchemy.sql import text
 
-from dana.walker import Collection, Collection
+from dana.loader import Collection
 
 
 class Node(object):

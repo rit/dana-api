@@ -1,6 +1,6 @@
 from sqlalchemy import select
 
-from .walker import Collection
+from dana.loader import Collection
 
 
 def test_cte(dbsession):

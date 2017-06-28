@@ -4,7 +4,7 @@ from mock import Mock
 from toolz.itertoolz import first
 
 from dana.navtree import sqltxt, navtree, Node, NodeEncoder
-from dana.walker import Collection
+from dana.loader import Collection
 
 
 def test_navtree(dbsession):

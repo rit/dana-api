@@ -1,5 +1,5 @@
 pytest:
-	YARGS_ENV=test pytest --cov-report term-missing --cov=dana dana
+	YARGS_ENV=test pytest --cov-report term-missing --cov=dana tests
 
 db-up:
 	alembic upgrade head
