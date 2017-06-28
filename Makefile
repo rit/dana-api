@@ -18,7 +18,7 @@ clear:
 
 import:
 # Start a parallel job for every 500 lines of input from find
-	find iiif -type f -name '*.json' | parallel --pipe -N500 python -m dana.walker
+	find iiif -type f -name '*.json' | parallel --pipe -N500 python -m dana.loader
 
 import_series:
 	find iiif -type f -name '*.json' | python -m dana.walker

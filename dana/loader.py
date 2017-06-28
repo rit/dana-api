@@ -43,7 +43,7 @@ def load_json(path):
         return json.load(f)
 
 
-def walk(path, dbsession):
+def load(path, dbsession):
     doc = load_json(path)
     label = doc['label']
     slug = extract_slug(doc['@id'])
