@@ -12,6 +12,10 @@ db-both: db-up db-down
 trim:
 	@@find dana -name "*.py" | xargs sed -i '' -e 's/[[:space:]]*$$//'
 
+clear:
+	find dana -name '*.pyc' | xargs rm
+	find dana -name '__pycache__' | xargs rm -rf
+
 import:
 # Start a parallel job for every 500 lines of input from find
 	find iiif -type f -name '*.json' | parallel --pipe -N500 python -m dana.walker

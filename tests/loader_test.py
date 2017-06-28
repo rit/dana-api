@@ -1,6 +1,6 @@
-from .walker import walk
-from .walker import Collection
-from .walker import extract_slug
+from dana.loader import walk
+from dana.loader import Collection
+from dana.loader import extract_slug
 
 from operator import attrgetter
 
