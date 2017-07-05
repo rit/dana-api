@@ -1,14 +1,11 @@
 from collections import OrderedDict
-from collections import defaultdict
-from collections import namedtuple
 import json
 import sys
 import time
 
-from salsa import Session
 from sqlalchemy.sql import text
 
-from dana.loader import Collection
+from .model import Collection
 
 
 class Node(object):
@@ -40,7 +37,7 @@ def append_child(root, node):
     return root
 
 
-def navtree(rows, top):
+def nav(rows, top):
     root = OrderedDict()
     root[top.row.slug] = top
     cur_level = root
@@ -55,22 +52,3 @@ def navtree(rows, top):
         append_child(parent, child)
 
     return root
-
-
-def gendoc(slug, dbsession):
-    root = dbsession.query(Collection).get(slug)
-    sql =  sqltxt('sql/navtree.bound.sql')
-    rows = dbsession.execute(sql, dict(slug=slug))
-    tree = navtree(rows, Node(row=root))
-    fname = 'output/navtree/{}.json'.format(slug)
-    with open(fname, 'w') as f:
-        json.dump(tree[slug], f, indent=4, separators=(',', ': '), cls=NodeEncoder)
-
-
-if __name__ == '__main__':
-    dbsession = Session()
-    start = time.time()
-    for line in sys.stdin:
-        gendoc(line.strip(), dbsession)
-    delta = time.time() - start
-    print('Done in {:f} seconds'.format(delta))
