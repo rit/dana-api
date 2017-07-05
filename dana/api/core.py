@@ -6,5 +6,7 @@ from yargs import parse
 
 settings = parse('settings')
 app = Flask(__name__)
+
+# Setup database
 app.config['SQLALCHEMY_DATABASE_URI'] = settings.dburl
 db = SQLAlchemy(app)
