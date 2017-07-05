@@ -1,5 +1,7 @@
 import json
 
+from sqlalchemy import select
+
 from .core import app
 from .core import db
 from .model import Collection
@@ -28,3 +30,18 @@ def collectiontree(slug):
     doc['manifests'] = []
     doc['collections'] = docs
     return json.dumps(doc)
+
+
+@app.route('/objects/<slug>/location')
+def object_location(slug):
+    c = Collection.__table__.columns
+    coll = select(c).where(c.slug==slug).cte(recursive=True)
+    coll_alias = coll.alias()
+    parents = Collection.__table__.alias()
+    coll = coll.union_all(
+            select(parents.c).
+            where(parents.c.slug == coll_alias.c.parent_slug)
+            )
+    sql = select(coll.c).order_by(coll.c.slug)
+    res = db.session.execute(sql)
+    return json.dumps(res.fetchall())
