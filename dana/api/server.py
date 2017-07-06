@@ -6,15 +6,17 @@ from sqlalchemy import select
 from .core import app
 from .core import db
 from .model import Collection
-from .navtree import nav, sqltxt, Node, NodeEncoder
+from .navtree import nav, sqltxt, Node
+from .serializer import ModelEncoder
 
 
-app.json_encoder = NodeEncoder
+app.json_encoder = ModelEncoder
 
 
 @app.route('/navtree/<slug>')
 def navtree(slug):
     root = db.session.query(Collection).get(slug)
+    # TODO use sqlalchemy instead of raw sql
     sql =  sqltxt('sql/navtree.bound.sql')
     rows = db.session.execute(sql, dict(slug=slug))
     tree = nav(rows, Node(row=root))
@@ -48,4 +50,5 @@ def object_location(slug):
             )
     sql = select(coll.c).order_by(coll.c.slug)
     res = db.session.execute(sql)
-    return json.dumps(res.fetchall())
+    #TODO return only what needed for the UI
+    return jsonify(res.fetchall())
