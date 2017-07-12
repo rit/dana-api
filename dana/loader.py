@@ -27,7 +27,6 @@ def extract_slug(url):
     matched = pattern.match(url)
     if matched:
         return matched.group(1)
-    return None
 
 
 def children_collection(doc):
