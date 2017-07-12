@@ -1,13 +1,25 @@
 import json
 
+import pytest
 from mock import Mock
 from toolz.itertoolz import first
 
 from dana.api.navtree import sqltxt, nav, Node, NodeEncoder
-from dana.loader import Collection
+from dana.api.model import Collection
+from dana.loader import load
 
 
-def test_nav(dbsession):
+@pytest.fixture
+def sample_collection(dbsession):
+    paths = [
+        "dana/fixtures/collection/szeemann_collection.json",
+        "dana/fixtures/collection/szeemann_series_iv_collection.json",
+        "dana/fixtures/collection/szeemann_series_iv_subseries_f_collection.json"
+    ]
+    [load(path, dbsession) for path in paths]
+
+
+def test_nav(dbsession, sample_collection):
     slug = '2011m30'
     sql =  sqltxt('sql/navtree.bound.sql')
     rows = dbsession.execute(sql, dict(slug=slug))
@@ -26,12 +38,12 @@ def test_nav(dbsession):
     assert 'Series I.' in series1.row.label
     assert len(series1.children) == 0
 
-    series3 = root_node.children[keys[2]]
-    assert 'Series III.' in series3.row.label
-    assert len(series3.children) == 3
+    series4 = root_node.children[keys[3]]
+    assert 'Series IV.' in series4.row.label
+    assert len(series4.children) == 6
 
 
-def test_nav_json(dbsession):
+def test_nav_json(dbsession, sample_collection):
     slug = '2011m30'
     sql =  sqltxt('sql/navtree.bound.sql')
     rows = dbsession.execute(sql, dict(slug=slug))
@@ -48,6 +60,7 @@ def test_nav_json(dbsession):
 
     series10 = ddoc[slug]['children'][9]
     assert 'Series X.' in  series10['label']
+
 
 def test_node_json():
     row = Mock()
