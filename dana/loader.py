@@ -84,6 +84,6 @@ if __name__ == '__main__':
     dbsession = Session()
     start = time.time()
     for line in sys.stdin:
-        walk(line.strip(), dbsession)
+        load(line.strip(), dbsession)
     delta = time.time() - start
     print('Done in {:f} seconds'.format(delta))
