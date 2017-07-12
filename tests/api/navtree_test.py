@@ -9,16 +9,6 @@ from dana.api.model import Collection
 from dana.loader import load
 
 
-@pytest.fixture
-def sample_collection(dbsession):
-    paths = [
-        "dana/fixtures/collection/szeemann_collection.json",
-        "dana/fixtures/collection/szeemann_series_iv_collection.json",
-        "dana/fixtures/collection/szeemann_series_iv_subseries_f_collection.json"
-    ]
-    [load(path, dbsession) for path in paths]
-
-
 def test_nav(dbsession, sample_collection):
     slug = '2011m30'
     sql =  sqltxt('sql/navtree.bound.sql')
