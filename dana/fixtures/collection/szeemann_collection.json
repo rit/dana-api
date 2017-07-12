@@ -1,0 +1,183 @@
+{
+    "@context": "http://iiif.io/api/presentation/2/context.json",
+    "@id": "http://data.getty.edu/iiif/research/archives/2011m30/collection.json",
+    "@type": "sc:Collection",
+    "collections": [
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref5903_vld/collection.json",
+            "@type": "sc:Collection",
+            "label": "Project files, Series I."
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref237693_e02/collection.json",
+            "@type": "sc:Collection",
+            "label": "Artist files Series II."
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref234485_6io/collection.json",
+            "@type": "sc:Collection",
+            "label": "Curator and museum professional files, Series III."
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref13_0pf/collection.json",
+            "@type": "sc:Collection",
+            "label": "Photographs, Series IV."
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref240273_o72/collection.json",
+            "@type": "sc:Collection",
+            "label": "Audiovisual files, Series V."
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref239625_hhi/collection.json",
+            "@type": "sc:Collection",
+            "label": "Topical files, Series VI."
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref237792_fvd/collection.json",
+            "@type": "sc:Collection",
+            "label": "Gallery and museum ephemera, Series VII."
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref237389_ubd/collection.json",
+            "@type": "sc:Collection",
+            "label": "Personal files, Series VIII."
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref237033_046/collection.json",
+            "@type": "sc:Collection",
+            "label": "Business files, Series IX."
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref246041_t31/collection.json",
+            "@type": "sc:Collection",
+            "label": "Digital files, Series X."
+        }
+    ],
+    "description": "Harald Szeemann's vast archive documents his career as a visionary art curator for almost five decades, from 1957 to 2005. Included are project files tracing the development of numerous exhibitions and other projects, extensive correspondence with noted artists and cultural figures throughout the world, photographic documentation of exhibitions and artworks, video art and recorded interviews, exhibition announcements and other ephemera from hundreds of museums and galleries, research files on a broad range of topics, a small group of personal papers, and business records. Series I documents Szeemann's curatorial process from conception to installation (\"from vision to nail\"), including his detailed notes, installation sketches, correspondence, building plans, exhibition announcements and checklists, wall texts, research material, and documents related to the production of didactic material, framing, and shipping. Some projects have files on the individual artists in the exhibition, and there is crossover with Series II. The project files also include material related to other projects such as films, books, texts, seminars, lectures and awards ceremonies. Also documented are exhibitions Szeemann co-curated, for which he was a consultant, or to which he contributed writings. The files were organized by Szeemann in chronological order. Unrealized projects have been integrated into the series by the archivist using the earliest date mentioned in the records. Series II contains artist files on more than 20,000 artists. While many files contain only one or two items, other files include artist correspondence, unique works of art, rare posters, and limited-edition items along with exhibition announcements and press clippings. Some exhibition records were relocated to the artist files by Szeemann, so there is crossover with Series I. Artist files are not limited to fine artists, but also include authors, musicians, filmmakers, and other creators. Szeemann accrued particularly extensive files on Joseph Beuys, James Lee Byars, Gilbert Clavel, Marcel Duchamp, Mario Merz, Antonin Artaud, and Hugo Ball. Click here for the finding aid for Series II. Series III contains Szeemann's files on and correspondence with other curators and art world figures, including architects, gallerists, art critics, art historians, choreographers, collectors, and photographers. Correspondence with catalog contributors and other collaborators to his exhibitions can be found here, as well as materials on art associations, magazines, companies, awards, publishing houses, and fairs. Series IV contains more than 40,500 photographic prints, negatives, slides, and transparencies. Included is extensive documentation of many of Szeemann's exhibitions and other projects; photographs of artists with whom he worked and their individual artworks and performances; a collection of portraits of the Monte Verit\u00e0 intellectual circle by photographer Margarethe Fellerer; Szeemann's slide library, including slideshows compiled for lectures; collections of photographs reflecting Szeemann's interdisciplinary subject interests with a focus on cultural sites and geographic locations; and portraits and snapshots of Szeemann and his family. Series V comprises Szeemann's audiovisual collection of approximately 2240 items including films and videos submitted by artists, radio and television interviews, music, photographic and textual files regarding exhibitions or artists, and materials received from museums and galleries. Some of the material has been separated from other series. Formats include VHS, compact discs, vinyl records, DVDs, audiocassettes, CD-ROMs, CD-Rs, floppy disks, and film and audiotape reels. Series VI documents Szeemann's research interests in wide range subject areas including fine and graphic arts; art collectors and publishing houses; dance and choreography; film, video, and broadcast media; literature and philosophy; music; theater; countries, regions, and cities in Europe and around the globe; people; politics, environment and society; and assorted topics he collected under the rubric Temi (themes). Materials include clippings from newspapers, magazines, and press bureaus; brochures and pamphlets; publications including books, journals, and newsletters; photographic materials; postcards; drawings; posters; theater and film programs; calendars; city guidebooks; and maps. Series VII contains the ephemera Szeemann collected from hundreds of museums and galleries throughout the world. He also collected ephemera from international exhibitions, festivals, symposiums and workshops, and other events. Materials include brochures, booklets; exhibition and institution guides; catalogs; correspondence in the form of faxes, emails, postcards and letters; posters; price lists; ticket stubs; and city guidebooks; and, less frequently, items such as matches; pins; shopping bags; and coasters. Series VIII includes family correspondence; materials collected by Szeemann about individuals in his family; materials collected by his family about his death including obituaries and condolence letters; and objects. Series IX reflects Szeemann's business activities and contains many years' worth of bank statements, receipts, and other financial records created or used by Szeemann during the course of travel or work, with a small portion covering personal family expenses, such as tuition and house repairs. Series X contains Szeemann's hard drive which includes his emails from Microsoft Outlook; and other files, mostly JPG, BMP, PDF, TIF, HTM, and Microsoft Word, primarily relating to artists and exhibitions. ",
+    "label": "Harald Szeemann papers 2011.M.30",
+    "metadata": [
+        {
+            "label": "Author/Creator",
+            "value": "Szeemann, Harald"
+        },
+        {
+            "label": "Contributors",
+            "value": [
+                "Merz, Mario",
+                "Beuys, Joseph",
+                "M\u00fchl, Otto",
+                "Fellerer, Margarethe",
+                "Rabinowitch, Royden",
+                "Byars, James Lee",
+                "Shunk, Harry",
+                "Sattmann, Didi",
+                "Hellgroth, Brigitte",
+                "Merola, Andrea",
+                "Eggmann, Verena",
+                "Beeren, Wim",
+                "Burkhard, Balthasar",
+                "Bezzola, Leonardo",
+                "Boersma, Pieter",
+                "Wehrmann, Erhard",
+                "Cotton, Paul",
+                "Drayer, Walter",
+                "L\u00fcscher, Ingeborg",
+                "Geluwe, Johan van",
+                "Gaechter & Clausen"
+            ]
+        },
+        {
+            "label": "Creation Date",
+            "value": "1800-2011, bulk 1949-2005"
+        },
+        {
+            "label": "Bio./Hist. Note",
+            "value": [
+                "Among the most influential art curators of his generation, Harald Szeemann (Swiss, 1933-2005) organized more than 150 exhibitions during a career that spanned almost five decades. Szeemann studied art history, archaeology and journalism in Bern and Paris and had a brief, but successful, theatrical career before he organized his first exhibition in 1957. In 1961 he became one of the youngest museum directors in the world when he was appointed to head the Kunsthalle Bern. From 1961 to 1966, Szeemann was also in charge of the exhibition program at the St\u00e4dtische Galerie Biel. Szeemann gained prominence through a lively and experimental series of exhibitions that included early projects with Robert Rauschenberg, Andy Warhol, James Rosenquist, and Christo. In addition to showcasing current developments in contemporary art such as kinetic art, op art, and happenings, Szeemann also examined areas of early twentieth-century modernism such as Dada and surrealism, including artists such as Marcel Duchamp, Kazimir Malevich, and Vassily Kandinsky, as well as various fields of visual culture such as Art Brut, science fiction and religious iconography. ",
+                "Following his 1969 exhibition Live in Your Head: When Attitudes Become Form, a sprawling and controversial international survey of postminimalism, conceptual art, and Arte Povera, Szeemann left the Kunsthalle Bern to become an independent curator. Calling his business the Agentur f\u00fcr geistige Gastarbeit, or Agency for Spiritual Guest-Labor, a one-man enterprise relying on a group of independent partners, Szeemann developed a new form of exhibition-making that centered on close collaborative relationships with artists and a sweeping global vision of contemporary visual culture, aided by a pioneering vision of fundraising. Because he traveled extensively and frequently, he was able to integrate emerging developments from disparate parts of the world into exhibitions that became touchstones of their time. ",
+                "Taking on the organization of documenta 5 in 1972, Szeemann transformed the exhibition into a vast and dynamic survey of young artists from across the world. Likewise, when asked to co-direct the Venice Biennale in 1980, the curator introduced a new concept that became a mainstay of the Biennale: the \"Aperto,\" an international and multigenerational group exhibition that contrasted with the Biennale's traditional focus on national representations. He continued to survey art-making from all parts of the world in the biennials he later organized in Lyon, Seville, and Gwangju, as well as when he returned to the Venice Biennale in both 1999 and 2001. \n \nSzeemann often tackled enormous themes that cut across regions and spanned the nineteenth and twentieth centuries, with a stunningly original approach, as in his trilogy of exhibitions The Bachelor Machines (1975), Monte Verit\u00e0: The breasts of truth (1978), and Tendency towards the Gesamtkunstwerk (1983). Exhibitions focused on topics such as utopia, disaster, and the \"Plateau of Humankind\" offered sweeping and provocative surveys, while exhibitions such as Visionary Switzerland (1991), Austria in a Net of Roses (1996), Blood and Honey: the Future Lies in the Balkans (2003) and La Belgique Visionnaire Belgi\u00eb: C'est arriv\u00e9 pr\u00e8s de chez nous (2005) aimed at examining narrower topics and regions in interdisciplinary depth. Szeemann was also active on a local level in Ticino, Switzerland, where he organized several exhibitions and worked on various museum projects, among which Casa Anatta on Monte Verit\u00e0, devoted to the history of the early 20th-century colony of anarchists, artists and life reformers, is to be counted among his greatest achievements. ",
+                "During his collaboration with Kunsthaus Z\u00fcrich (1981-2000), Szeemann became known for producing definitive solo exhibitions, not only on contemporary artists such as Joseph Beuys, Georg Baselitz, and Bruce Nauman, but on such cultural icons as Charles Baudelaire, Alfred Jarry and Egon Schiele. Szeemann's mid-1980s contemporary sculpture group exhibitions included Traces, Sculptures and Monuments of Their Precise Journey (1985) and De Sculptura (1986). He referred to them as \"poems in space,\" and investigated the \"breathing space\" between artworks and within the exhibition venue. From the late 1980s onward, he often embarked on large-scale projects set in historical buildings including Deichtorhallen in Hamburg, Halle Tony Garnier in Lyon, and the Arsenale in Venice. It was the first time these locations hosted contemporary art exhibitions.",
+                "Even when collaborating with large institutions, Szeemann relied on the same team of independent partners for the technical aspects, believing that \"only tribes survive.\" Long-term friends and coworkers included his wife Ingeborg L\u00fcscher, an artist; daughter Una Szeemann, also an artist; son J\u00e9r\u00f4me Szeemann, who was in charge of installation; architect Christoph Z\u00fcrcher; model designer Peter Bissegger; and Josy Kraft, who was in charge of transportation and storage.",
+                "Szeemann\u2019s parents were Julie Szeemann-Kambly (1907-2005) and \u00c9tienne Ernst Szeemann (1904-1958), and his younger brother was Rolf Szeemann (1935-1994).  His father worked in a salon owned by Szeemann\u2019s grandfather, \u00c9tienne Szeemann (1873-1971), a successful hair stylist during the early 20th century, who was the subject of Szeemann's exhibition Grandfather - a pioneer like us. Szeemann married twice, the first time to Fran\u00e7oise Bonnefoy (1934-) in 1959. He has three children: J\u00e9r\u00f4me (1959-) and Val\u00e9rie (1964-) from his first marriage, and Una (1975-) with L\u00fcscher.",
+                "Szeemann began his personal archive in the late 1960s when, leaving the Kunsthalle Bern, he decided to take a substantial part of the documentation for his exhibitions with him. The archive grew significantly over the decades. Szeemann kept all documents and research material related to his projects, including all correspondence sent or received. The archive is not only a resource for the study of Szeemann's exhibitions, activities and interests, but is also an invaluable trove of rare gallery and museum ephemera such as invitation cards, press releases and posters from the 1960s to the 2000s. In the mid-1980s Szeemann permanently housed the entire archive in a former watch factory in the village of Maggia, in Ticino, which Szeemann called the \"Fabbrica Rosa\" or \"Pink Factory.\" Previously it had been scattered between his homes in Ticino, Bern, and Civitanova Marche.",
+                "The result of almost 50 years of professional activity, the archive can be considered one of Szeemann's main achievements. Both a physical office and a tool for retrieving information, it functioned also as an instrument of self-representation, ranging from his high school years and theatrical experiments to his \"Museum of Obsessions.\" The archive also afforded Szeemann the opportunity to personally write and partially rectify the history of his own professional life, and it is possible to trace examples of concealment through intentional \"misfiling\" of exhibitions he felt were unsatisfactory. The importance the Fabbrica Rosa played in the Szeemann's understanding of his own career is demonstrated by the fact that Szeemann had planned to retire from exhibition-making in 2006 and focus all of his energies on reordering this archive. Unfortunately he died unexpectedly in 2005 at the age of 71 before realizing his plan."
+            ]
+        },
+        {
+            "label": "Arrangement",
+            "value": "The collection is arranged in ten series: Series I. Project files;  Series II. Artist files; Series III. Curator and museum professional files;  Series IV. Photographs;  Series V. Audiovisual;  Series VI. Topical;  Series VII. Gallery and museum ephemera;  Series VIII. Personal files;  Series IX. Business files;  Series X. Digital files. "
+        },
+        {
+            "label": "Physical Desc.",
+            "value": [
+                "1959.35 Linear Feet",
+                "(3814 boxes, 449 flatfiles, 6 crates, 3 bins, 24 reels)"
+            ]
+        },
+        {
+            "label": "Summary",
+            "value": "Swiss art curator Harald Szeemann (1933-2005) organized more than 150 exhibitions during a career that spanned almost five decades. An advocate of contemporary movements such as conceptualism, land art, happenings, Fluxus and performance, and of artists such as Joseph Beuys, Richard Serra, Cy Twombly and Mario Merz, Szeemann developed a new form of exhibition-making that centered on close collaborative relationships with artists and a sweeping global vision of contemporary visual culture. He organized vast international surveys such as documenta 5; retrospectives of individual artists including Sigmar Polke, Bruce Nauman, Wolfgang Laib, James Ensor, and Eug\u00e8ne Delacroix; and thematic exhibitions on such provocative topics as utopia, disaster, and the \"Plateau of Humankind.\" Szeemann's papers thoroughly document his curatorial practice, including preliminary notes for many projects, written descriptions and proposals for exhibitions, installation sketches, photographic documentation, research files, and extensive correspondence with colleagues, artists and collaborators."
+        },
+        {
+            "label": "Form/Genre",
+            "value": [
+                "Cellulose nitrate film ",
+                "Black-and-white negatives",
+                "Color negatives",
+                "Postcards",
+                "Color transparencies",
+                "Black-and-white negatives",
+                "Ephemera -- 20th century",
+                "Gelatin silver prints -- 20th century",
+                "Postcards",
+                "Ephemera -- 20th century",
+                "Color photographs",
+                "Gelatin silver prints -- 20th century",
+                "Color transparencies",
+                "CD-Rs",
+                "Color slides -- 20th century",
+                "Color slides -- 20th century",
+                "Color photographs",
+                "Color negatives",
+                "Cellulose nitrate film ",
+                "CD-Rs"
+            ]
+        },
+        {
+            "label": "Language",
+            "value": [
+                "German",
+                "German",
+                "Italian",
+                "French",
+                "English"
+            ]
+        },
+        {
+            "label": "Preferred Citation",
+            "value": [
+                "Harald Szeemann papers, 1800-2011, bulk 1949-2005, The Getty Research Institute, Los Angeles, Accession no. 2011.M.30.",
+                "http://hdl.handle.net/10020/cifa2011m30"
+            ]
+        },
+        {
+            "label": "Use Restrictions",
+            "value": "Contact Library Reproductions and Permissions."
+        },
+        {
+            "label": "Access/Rights",
+            "value": [
+                "Open for use by qualified researchers with the following exceptions. ",
+                "Unreformatted audiovisual materials, nitrate negatives and computer files are unavailable. Contact repository to request reformatting.",
+                "Boxes 81, 214, 224, 2409, 2418, RX and RX2 are sealed pending further review. Boxes 230-267 contain nitrate negatives and are restricted. ",
+                "Boxes 82, 215, and 1074B require special handling; contact the repository regarding access. Box 2885A is restricted due to fragility; contact the repository regarding access. Boxes 1074C and 1074D are restricted due to fragility; contact repository to request digital imaging. Boxes B-13**, B-16**, B-43**, B-48**, B-79**, B-81**, B-83**, B-84**, B-86**, 3741**-3743**, 3765*-3767* and TP-drawers are housed off-site and only open for use with the curator's permission. Contact repository regarding access. Boxes 320-321, 924, 2955-3028*, 2966**, 3716-3730, 3727*, 3748-3754, 3755*-3757*, TP59A-TP59B, TP77-TP78, and 3109* are currently only open for use with the curator's permission. Contact the repository regarding access. Boxes 2214-2312, 2315-2346, 2353-2360 and 3513-3531 contain unreformatted audiovisual materials and are restricted; all reels are also restricted; contact the repository for reformatting of items in these boxes on reels.",
+                "The digital files are accessible on a laptop in the Special Collections Reading Room. All files except emails are available as a mounted disk image in a Windows environment. The emails are on the laptop as imported PST files accessible through a Microsoft Outlook client. Digital files containing restricted personal information such as third-party bank account numbers or student records are restricted until 2081. "
+            ]
+        },
+        {
+            "label": "Related Material",
+            "value": "Prior to the acquisition of the collection by the Getty Research Institute, some of the materials related to Monte Verit\u00e0 were separated by Harald Szeemann and given to the Fondazione Monte Verit\u00e0 in Ascona, Switzerland. The link to information about these materials is \nat http://www.monteverita.org/en/92/fondo-harald-szeemann.aspx."
+        }
+    ]
+}

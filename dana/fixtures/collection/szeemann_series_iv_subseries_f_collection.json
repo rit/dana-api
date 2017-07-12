@@ -1,0 +1,53 @@
+{
+    "@context": "http://iiif.io/api/presentation/2/context.json",
+    "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref9379_wmk/collection.json",
+    "@type": "sc:Collection",
+    "collections": [
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref9381_xbu/collection.json",
+            "@type": "sc:Collection",
+            "label": "Photographs of Harald Szeemann,"
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref9412_psf/collection.json",
+            "@type": "sc:Collection",
+            "label": "Fabbrica, Maggia, Switzerland,"
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref9421_gnj/collection.json",
+            "@type": "sc:Collection",
+            "label": "Family photographs,"
+        }
+    ],
+    "description": "This subseries contains more than 1,100 items, mostly photographs of Harald Szeemann, his family, and the \"Fabbrica\" in Maggia, as well as Szeemann's passports. Personal photographs culled for the publication Harald Szeemann: with by through because towards despite have also been included, and are identified below.",
+    "label": "Personal, Series IV.F.",
+    "manifests": [
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref9418_dtn/manifest.json",
+            "@type": "sc:Manifest",
+            "label": "Harald Szeemann's passports,"
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref9540_2pq/manifest.json",
+            "@type": "sc:Manifest",
+            "label": "Unidentified, "
+        }
+    ],
+    "metadata": [
+        {
+            "label": "Creation Date",
+            "value": "approximately 1880-2004"
+        },
+        {
+            "label": "Arrangement",
+            "value": "Most materials were unfiled and have been grouped according to subject. Szeemann's original order for the With by through because towards despite photographs has been retained."
+        },
+        {
+            "label": "Physical Desc.",
+            "value": [
+                "9.8 Linear Feet",
+                "(16 boxes)"
+            ]
+        }
+    ]
+}

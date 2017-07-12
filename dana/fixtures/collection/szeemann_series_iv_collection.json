@@ -1,0 +1,60 @@
+{
+    "@context": "http://iiif.io/api/presentation/2/context.json",
+    "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref13_0pf/collection.json",
+    "@type": "sc:Collection",
+    "collections": [
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref15_1je/collection.json",
+            "@type": "sc:Collection",
+            "label": "Projects, Series IV.A."
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref2099_j1v/collection.json",
+            "@type": "sc:Collection",
+            "label": "Artists, Series IV.B."
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref7582_p8y/collection.json",
+            "@type": "sc:Collection",
+            "label": "Margarethe Fellerer photographs of Monte Verit\u00e0, Series IV.C."
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref8690_dir/collection.json",
+            "@type": "sc:Collection",
+            "label": "Topical, Series IV.D."
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref9254_8to/collection.json",
+            "@type": "sc:Collection",
+            "label": "Slide carousels, Series IV.E."
+        },
+        {
+            "@id": "http://data.getty.edu/iiif/research/archives/2011m30_ref9379_wmk/collection.json",
+            "@type": "sc:Collection",
+            "label": "Personal, Series IV.F."
+        }
+    ],
+    "description": "The series contains more than 40,500 photographic prints, negatives, slides, and tansparencies. Included is extensive documentation of many of Szeemann's exhibitions, publications and other projects; photographs of artists with whom he worked and their individual artworks and performances; a collection of portraits of the Monte Verit\u00e0 intellectual circle by photographer Margarethe Fellerer; Szeemann's slide library, including the slideshows he compiled for lectures and other engagements; collections of photographs reflecting Szeemann's interdisciplinary subject interests with a focus on cultural sites and geographic locations; portraits and snapshots of Szeemann and his family. Any manuscripts, typescripts or correspondence associated with the photographs were kept in this series. Series I. Project files and Series II. Artist files also contain photographic materials that were not separated out by Szeemann. Late in Szeemann's career he acquired the rights to Balthazar Burkhard's photographic archive. Szeemann filed the Burkhard photographs in folders ajacent to his other photographs of the same subject. Photographs from the Burkhard archive are noted in thecontainer list. Szeemann also frequently worked with the following photographers: Harry Shunk, Wim Beeren, Leonardo Bezzola, Pieter Boersma, Walter Drayer, Verena Eggmann, Gaechter & Clahsen, Brigitte Hellgroth, Andrea Merola, Margaret Nissen, Didi Sattmann, Niklaus Stauss, Erhard Wehrmann. Among the projects with particularly extensive photographic documentaion are: Live in Your Head: When Attitudes Become Form, Happening amp; Fluxus, Documenta 5, The Bachelor Machines, Monte Verit\u00e0, Tendency towards the Gesamtkunstwerk,Zeitlos, Visionary Switzerland, Swiss Pavilion, Joseph Beuys, 100 Years of Cinema, and Austria in a net of roses. The following artists are also well represented in the series: Joseph Beuys, James Lee Byars, Michael Heizer, Edward Kienholz, Piotr Kowalski, Wolfgang Laib, Mario Merz, Otto Muehl, Hermann Nitsch, Claes Oldenburg, Sigmar Polke, Royden Rabinowitch, Markus Raetz, Armand Schulthess, Richard Serra, Kieth Sonnier, Niele Toroni, Cy Twombly and Ben Vautier. Materials include black-and-white photographs, negatives, contact prints, color photographs, color slides, color transparencies, color negatives and photographic postcards. Also included are some album pages with more than one photograph per page. Original folder labels and photographic labels are often included but are not counted or cataloged. The item counts indicate the number of photographic items only, unless otherwise specified.",
+    "label": "Photographs, Series IV.",
+    "metadata": [
+        {
+            "label": "Creation Date",
+            "value": "1800, 1836-2011, bulk 1957-2005"
+        },
+        {
+            "label": "Arrangement",
+            "value": "This series is arranged in six subseries: Series IV.A. Projects, 1895-2007; Series IV.B.              Artists, 1892-2007; Series IV.C. Margarethe Fellerer photographs of Monte Verit\u00e0, 1904-1979; Series IV.D. Topical, 1900-2004; Series IV.E. Slide carousels, undated; Series IV.F. Personal, 1912-2004."
+        },
+        {
+            "label": "Physical Desc.",
+            "value": [
+                "101.9 Linear Feet",
+                "(255 boxes and 3 flatfiles)"
+            ]
+        },
+        {
+            "label": "Access/Rights",
+            "value": "Boxes 81, 214, 224, 2409, and 2418 are sealed pending further review. Boxes 82 and 215 require special handling; contact the repository regarding access. Boxes 230-267 are restricted because they contain nitrate negatives."
+        }
+    ]
+}
