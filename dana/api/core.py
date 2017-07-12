@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 from yargs import parse
 
-
 settings = parse('settings')
 app = Flask(__name__)
 

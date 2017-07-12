@@ -5,12 +5,10 @@ from .navtree import Node
 
 
 class ModelEncoder(JSONEncoder):
-
     def default(self, obj):
         if isinstance(obj, Node):
             # obj.row can be RowProxy or Collection
-            return dict(label=obj.row.label, slug=obj.row.slug,
-                    children=obj.children.values())
+            return dict(label=obj.row.label, slug=obj.row.slug, children=obj.children.values())
         if isinstance(obj, RowProxy):
             return dict(obj.items())
         if hasattr(obj, '__mapper__'):

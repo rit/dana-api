@@ -12,6 +12,9 @@ db-both: db-up db-down
 genctags:
 	ctags -R --extra=+f dana tests
 
+format:
+	yapf -ri dana tests
+
 trim:
 	@@find dana -name "*.py" | xargs sed -i '' -e 's/[[:space:]]*$$//'
 

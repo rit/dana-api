@@ -11,7 +11,7 @@ from dana.loader import load
 
 def test_nav(dbsession, sample_collection):
     slug = '2011m30'
-    sql =  sqltxt('sql/navtree.bound.sql')
+    sql = sqltxt('sql/navtree.bound.sql')
     rows = dbsession.execute(sql, dict(slug=slug))
     row = dbsession.query(Collection).get(slug)
     top = Node(row=row)
@@ -35,7 +35,7 @@ def test_nav(dbsession, sample_collection):
 
 def test_nav_json(dbsession, sample_collection):
     slug = '2011m30'
-    sql =  sqltxt('sql/navtree.bound.sql')
+    sql = sqltxt('sql/navtree.bound.sql')
     rows = dbsession.execute(sql, dict(slug=slug))
     row = dbsession.query(Collection).get(slug)
     top = Node(row=row)
@@ -46,10 +46,10 @@ def test_nav_json(dbsession, sample_collection):
     assert len(ddoc[slug]['children']) == 10
 
     series1 = ddoc[slug]['children'][0]
-    assert 'Series I.' in  series1['label']
+    assert 'Series I.' in series1['label']
 
     series10 = ddoc[slug]['children'][9]
-    assert 'Series X.' in  series10['label']
+    assert 'Series X.' in series10['label']
 
 
 def test_node_json():

@@ -4,7 +4,6 @@ from salsa.testing import dbsession
 
 from dana.loader import load
 
-
 pytest.fixture(dbsession)
 
 

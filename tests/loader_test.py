@@ -7,6 +7,7 @@ from operator import attrgetter
 szeemann_slug = '2011m30'
 series_slug = '2011m30_ref5903_vld'
 
+
 def test_load_doc(dbsession):
     load('./dana/fixtures/szeemann.json', dbsession)
     res = dbsession.query(Collection).get(szeemann_slug)
@@ -51,6 +52,7 @@ def test_load_doc_child_update(dbsession):
     assert szeemann_slug == series.parent_slug
     children = dbsession.query(Collection).filter_by(parent_slug=szeemann_slug).all()
     assert len(children) == 10
+
 
 def test_load_doc_child_update_before_parent(dbsession):
     count = dbsession.query(Collection).count()

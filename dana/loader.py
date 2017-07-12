@@ -10,7 +10,6 @@ from sqlalchemy import Table
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import insert
 
-
 from salsa import Base
 from salsa import Session
 from salsa import metadata
@@ -32,8 +31,10 @@ def extract_slug(url):
 def children_collection(doc):
     collections = doc.get('collections', []) + doc.get('manifests', [])
     step = count()
-    kws = [ dict(slug=extract_slug(c['@id']), position=next(step), label=c['label'], type=c['@type'])
-            for c in collections]
+    kws = [
+        dict(slug=extract_slug(c['@id']), position=next(step), label=c['label'], type=c['@type'])
+        for c in collections
+    ]
     return kws
 
 
@@ -52,10 +53,9 @@ def load(path, dbsession):
     insert_data.update(parent_slug=None)
     root = insert(Collection).values(insert_data)
     root = root.on_conflict_do_update(
-                constraint='collections_pkey',
-                # We update every columns except 'parent_slug'
-                set_=dict(upsert_data)
-            )
+        constraint='collections_pkey',
+        # We update every columns except 'parent_slug'
+        set_=dict(upsert_data))
     dbsession.execute(root)
     dbsession.commit()
 
@@ -63,18 +63,13 @@ def load(path, dbsession):
 
 
 def upsert_children(doc, parent_slug, dbsession):
-    pairs = [
-        dict(parent_slug=parent_slug, **kw)
-        for kw in children_collection(doc)
-    ]
+    pairs = [dict(parent_slug=parent_slug, **kw) for kw in children_collection(doc)]
     if len(pairs):
         sql = insert(Collection).values(pairs)
         sql = sql.on_conflict_do_update(
             constraint='collections_pkey',
             # We only update the parent slug and position
-            set_=dict(parent_slug=sql.excluded.parent_slug,
-                position=sql.excluded.position)
-        )
+            set_=dict(parent_slug=sql.excluded.parent_slug, position=sql.excluded.position))
         dbsession.execute(sql)
         dbsession.commit()
 

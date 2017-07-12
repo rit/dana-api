@@ -9,20 +9,17 @@ from .model import Collection
 
 
 class Node(object):
-
     def __init__(self, row):
         self.row = row
         self.children = OrderedDict()
 
 
 class NodeEncoder(json.JSONEncoder):
-
     def default(self, obj):
 
         if isinstance(obj, Node):
             # obj.row can be RowProxy or Collection
-            return dict(label=obj.row.label, slug=obj.row.slug,
-                    children=obj.children.values())
+            return dict(label=obj.row.label, slug=obj.row.slug, children=obj.children.values())
 
         return json.JSONEncoder.default(self, obj)
 

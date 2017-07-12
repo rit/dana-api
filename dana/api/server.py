@@ -9,7 +9,6 @@ from .model import Collection
 from .navtree import nav, sqltxt, Node
 from .serializer import ModelEncoder
 
-
 app.json_encoder = ModelEncoder
 
 
@@ -17,7 +16,7 @@ app.json_encoder = ModelEncoder
 def navtree(slug):
     root = db.session.query(Collection).get(slug)
     # TODO use sqlalchemy instead of raw sql
-    sql =  sqltxt('sql/navtree.bound.sql')
+    sql = sqltxt('sql/navtree.bound.sql')
     rows = db.session.execute(sql, dict(slug=slug))
     tree = nav(rows, Node(row=root))
     return jsonify(tree[slug])
@@ -29,9 +28,8 @@ def collectiontree(slug):
     collections = db.session.query(Collection)\
             .filter_by(parent_slug=slug).order_by('position')
     docs = [
-            dict(slug=c.slug, label=c.label, metadata=c.doc.get("metadata", []))
-            for c in collections
-            ]
+        dict(slug=c.slug, label=c.label, metadata=c.doc.get("metadata", [])) for c in collections
+    ]
     # TODO merge manifests and collections into 'children'
     doc['manifests'] = []
     doc['collections'] = docs
@@ -41,13 +39,10 @@ def collectiontree(slug):
 @app.route('/objects/<slug>/location')
 def object_location(slug):
     c = Collection.__table__.columns
-    coll = select(c).where(c.slug==slug).cte(recursive=True)
+    coll = select(c).where(c.slug == slug).cte(recursive=True)
     coll_alias = coll.alias()
     parents = Collection.__table__.alias()
-    coll = coll.union_all(
-            select(parents.c).
-            where(parents.c.slug == coll_alias.c.parent_slug)
-            )
+    coll = coll.union_all(select(parents.c).where(parents.c.slug == coll_alias.c.parent_slug))
     sql = select(coll.c).order_by(coll.c.slug)
     res = db.session.execute(sql)
     #TODO return only what needed for the UI
