@@ -4,8 +4,9 @@ import pytest
 from mock import Mock
 from toolz.itertoolz import first
 
-from dana.api.navtree import sqltxt, nav, Node, NodeEncoder
+from dana.api.navtree import sqltxt, nav, Node
 from dana.api.model import Collection
+from dana.api.serializer import ModelEncoder
 from dana.loader import load
 
 
@@ -40,7 +41,7 @@ def test_nav_json(dbsession, sample_collection):
     row = dbsession.query(Collection).get(slug)
     top = Node(row=row)
     tree = nav(rows, top)
-    doc = json.dumps(tree, cls=NodeEncoder)
+    doc = json.dumps(tree, cls=ModelEncoder)
     ddoc = json.loads(doc)
     assert 'Szeemann' in ddoc[slug]['label']
     assert len(ddoc[slug]['children']) == 10
@@ -57,7 +58,7 @@ def test_node_json():
     row.slug = 'hi'
     row.label = 'label'
     node = Node(row)
-    doc = json.dumps(node, cls=NodeEncoder)
+    doc = json.dumps(node, cls=ModelEncoder)
     keys = json.loads(doc).keys()
     assert 'label' in keys
     assert 'slug' in keys

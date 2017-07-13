@@ -1,11 +1,6 @@
 from collections import OrderedDict
-import json
-import sys
-import time
 
 from sqlalchemy.sql import text
-
-from .model import Collection
 
 
 class Node(object):
@@ -14,19 +9,9 @@ class Node(object):
         self.children = OrderedDict()
 
 
-class NodeEncoder(json.JSONEncoder):
-    def default(self, obj):
-
-        if isinstance(obj, Node):
-            # obj.row can be RowProxy or Collection
-            return dict(label=obj.row.label, slug=obj.row.slug, children=obj.children.values())
-
-        return json.JSONEncoder.default(self, obj)
-
-
 def sqltxt(fpath):
-    with open(fpath) as f:
-        return text(f.read())
+    with open(fpath) as sql:
+        return text(sql.read())
 
 
 def append_child(root, node):

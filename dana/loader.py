@@ -1,13 +1,11 @@
 from __future__ import print_function
 from itertools import count
 import json
-import os
 import re
 import sys
 import time
 
 from sqlalchemy import Table
-from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import insert
 
 from salsa import Base
@@ -47,8 +45,8 @@ def load(path, dbsession):
     doc = load_json(path)
     label = doc['label']
     slug = extract_slug(doc['@id'])
-    type = doc['@type']
-    upsert_data = dict(slug=slug, label=label, type=type, doc=doc)
+    type_ = doc['@type']
+    upsert_data = dict(slug=slug, label=label, type=type_, doc=doc)
     insert_data = upsert_data.copy()
     insert_data.update(parent_slug=None)
     root = insert(Collection).values(insert_data)
@@ -64,7 +62,7 @@ def load(path, dbsession):
 
 def upsert_children(doc, parent_slug, dbsession):
     pairs = [dict(parent_slug=parent_slug, **kw) for kw in children_collection(doc)]
-    if len(pairs):
+    if pairs:
         sql = insert(Collection).values(pairs)
         sql = sql.on_conflict_do_update(
             constraint='collections_pkey',
@@ -75,9 +73,9 @@ def upsert_children(doc, parent_slug, dbsession):
 
 
 if __name__ == '__main__':
-    dbsession = Session()
+    sess = Session()
     start = time.time()
     for line in sys.stdin:
-        load(line.strip(), dbsession)
+        load(line.strip(), sess)
     delta = time.time() - start
     print('Done in {:f} seconds'.format(delta))

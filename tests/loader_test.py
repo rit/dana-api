@@ -1,8 +1,8 @@
+from operator import attrgetter
+
 from dana.loader import load
 from dana.loader import Collection
 from dana.loader import extract_slug
-
-from operator import attrgetter
 
 szeemann_slug = '2011m30'
 series_slug = '2011m30_ref5903_vld'
@@ -13,7 +13,7 @@ def test_load_doc(dbsession):
     res = dbsession.query(Collection).get(szeemann_slug)
     assert 'Szeemann' in res.label
     assert res.slug == szeemann_slug
-    assert res.parent_slug == None
+    assert res.parent_slug is None
     assert szeemann_slug in res.doc['@id']
 
     children = dbsession.query(Collection).filter_by(parent_slug=szeemann_slug).all()
@@ -70,7 +70,7 @@ def test_load_doc_child_update_before_parent(dbsession):
 
     series = dbsession.query(Collection).get('2011m30_ref5903_vld')
     assert 'Series I' in series.label
-    assert '2011m30' == series.parent_slug
+    assert series.parent_slug == '2011m30'
     assert series_slug in series.doc['@id']
 
 

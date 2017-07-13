@@ -5,6 +5,7 @@ from .navtree import Node
 
 
 class ModelEncoder(JSONEncoder):
+    # pylint: disable=method-hidden
     def default(self, obj):
         if isinstance(obj, Node):
             # obj.row can be RowProxy or Collection

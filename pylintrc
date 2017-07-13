@@ -1,0 +1,6 @@
+[TYPECHECK]
+generated-members=query,execute
+
+
+[MESSAGES CONTROL]
+disable=missing-docstring, arguments-differ, too-few-public-methods, invalid-name, fixme

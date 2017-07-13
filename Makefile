@@ -15,6 +15,9 @@ genctags:
 format:
 	yapf -ri dana tests
 
+lint:
+	pylint -j 2 dana tests
+
 trim:
 	@@find dana -name "*.py" | xargs sed -i '' -e 's/[[:space:]]*$$//'
 
