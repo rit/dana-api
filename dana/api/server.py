@@ -28,9 +28,16 @@ def collectiontree(slug):
     docs = [
         dict(slug=c.slug, label=c.label, metadata=c.doc.get("metadata", [])) for c in collections
     ]
-    # TODO merge manifests and collections into 'children'
+    # TODO Exclude manifests and collections from the select statement
     doc['manifests'] = []
-    doc['collections'] = docs
+    doc['collections'] = []
+    doc['children'] = docs
+    return jsonify(doc)
+
+
+@app.route('/collections/<slug>')
+def collection(slug):
+    doc = db.session.query(Collection).get(slug).doc
     return jsonify(doc)
 
 
