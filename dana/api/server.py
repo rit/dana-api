@@ -26,7 +26,9 @@ def collectiontree(slug):
     collections = db.session.query(Collection)\
             .filter_by(parent_slug=slug).order_by('position')
     docs = [
-        dict(slug=c.slug, label=c.label, metadata=c.doc.get("metadata", [])) for c in collections
+        dict(slug=c.slug, label=c.label, description=c.doc.get('description', ''),
+            type=c.type, metadata=c.doc.get("metadata", []))
+        for c in collections
     ]
     # TODO Exclude manifests and collections from the select statement
     doc['manifests'] = []
@@ -48,7 +50,8 @@ def object_location(slug):
     coll_alias = coll.alias()
     parents = Collection.__table__.alias()
     coll = coll.union_all(select(parents.c).where(parents.c.slug == coll_alias.c.parent_slug))
+    # FIXME order by level
     sql = select(coll.c).order_by(coll.c.slug)
     res = db.session.execute(sql)
-    #TODO return only what needed for the UI
+    #TODO Make response smaller by returning only what needed by the UI
     return jsonify(res.fetchall())
