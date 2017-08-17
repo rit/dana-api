@@ -34,3 +34,6 @@ import_series:
 	
 rsync-output:
 	rsync -ruvz output/ ~/repo/dana.git/static
+
+backup-dev-db:
+	pg_dump -Fc --no-acl --no-owner dana_api_dev > dana_api_dev.dump
