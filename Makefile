@@ -30,10 +30,16 @@ import:
 	find iiif -type f -name '*.json' | parallel --pipe -N500 python -m dana.loader
 
 import_series:
-	find iiif -type f -name '*.json' | python -m dana.walker
+	find iiif -type f -name '*.json' | python -m dana.loader
 	
 rsync-output:
 	rsync -ruvz output/ ~/repo/dana.git/static
 
 backup-dev-db:
 	pg_dump -Fc --no-acl --no-owner dana_api_dev > dana_api_dev.dump
+
+danapy_image:
+	docker build --rm -t danapy:v0.1 .
+
+push_iiif__to_dana_qa:
+	rsync -ruz iiif dana-qa:/var/dana/dana-api

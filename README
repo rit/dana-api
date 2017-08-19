@@ -9,3 +9,27 @@ Running sql
 ===========
 
   trggr.py '.sql$' | xargs -L 1 psql -U danapg dana-ui-api-dev -f
+
+
+Starting minikube
+=================
+
+  minikube start --vm-driver=xhyve --feature-gates=PersistentLocalVolumes=true
+  
+  minikube ssh
+
+  cd /data
+  # mkdir directories for additional mount path
+
+
+  # Reusing the Docker daemon
+  eval $(minikube docker-env)
+
+  # to open browser or add --url flag to output service URL to terminal.
+  minikube service <name>
+
+
+  # connect to the running pod
+  kubectl exec -it <podname> command
+
+  kubectl exec -h

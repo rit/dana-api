@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dana-postgres
+  labels:
+    app: dana
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: dana
+    tier: postgres
+  clusterIP: None

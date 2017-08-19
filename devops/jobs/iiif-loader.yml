@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: iiif-loader
+spec:
+  template:
+    metadata:
+      name: iiif-loader
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: iiif-loader
+        image: danapy:v0.1
+        imagePullPolicy: Never
+        command: ["find iiif -type f -name '*.json' | python -m dana.loader
+"]
+        env:
+          - name: YARGS_ENV
+            value: prod

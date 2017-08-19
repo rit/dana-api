@@ -6,3 +6,5 @@ iiif
 output
 *.tmp.sql
 backup
+*.secret.yml
+pgdata
