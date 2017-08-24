@@ -75,7 +75,13 @@ def upsert_children(doc, parent_slug, dbsession):
 if __name__ == '__main__':
     sess = Session()
     start = time.time()
-    for line in sys.stdin:
-        load(line.strip(), sess)
-    delta = time.time() - start
-    print('Done in {:f} seconds'.format(delta))
+
+    if len(sys.argv) > 1:
+        with open(sys.argv[1]) as lines:
+            for line in lines:
+                print('Loading  {}'.format(line))
+                load(line.strip(), sess)
+        delta = time.time() - start
+        print('Done in {:f} seconds'.format(delta))
+    else:
+        print('please provide the manifests.txt')
