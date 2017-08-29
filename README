@@ -1,35 +1,75 @@
-Starting the api server in dev mode:
-====================================
+Setup the dev environment:
+==========================
 
-  FLASK_APP=dana.api.server python -m flask run --reload
+Prerequisites:
+--------------
 
+Install:
 
-
-Running sql
-===========
-
-  trggr.py '.sql$' | xargs -L 1 psql -U danapg dana-ui-api-dev -f
-
-
-Starting minikube
-=================
-
-  minikube start --vm-driver=xhyve --feature-gates=PersistentLocalVolumes=true
-  
-  minikube ssh
-
-  cd /data
-  # mkdir directories for additional mount path
+- pip_
+- docker_
 
 
-  # Reusing the Docker daemon
-  eval $(minikube docker-env)
+Build dana-api Docker images:
+-----------------------------
 
-  # to open browser or add --url flag to output service URL to terminal.
-  minikube service <name>
+Run::
+
+  make danapy_image
 
 
-  # connect to the running pod
-  kubectl exec -it <podname> command
+Start the api server:
+---------------------
 
-  kubectl exec -h
+Run::
+
+  docker-compose up -d
+  docker-compose start api
+
+
+Load iiif data into the Postgres
+--------------------------------
+
+First::
+
+
+  docker-compose run api alembic upgrade head
+
+
+Extract IIIF json data into the directry called `iiif`, we need to generate a
+text file which lists the full path name of each of the json document::
+
+
+  find iiif -type f -name '*.json' > jsons.txt
+
+
+We can then make use the jsons.txt like this::
+
+  docker-compose run api python -m dana.loader jsons.txt
+
+
+To test the API, open this url in the browser: http://localhost:5000/collections/2011m30
+
+
+Troubleshooting:
+----------------
+
+Run::
+
+  docker-compose ps
+
+The output should look similar to this::
+
+  Name                    Command               State           Ports
+  ----------------------------------------------------------------------------------
+  danaapigit_api_1   python -m flask run --host ...   Up      0.0.0.0:5000->5000/tcp
+  danaapigit_db_1    docker-entrypoint.sh postgres    Up      5432/tcp
+
+
+If the States are not `Up`, run this command::
+
+  docker-compose start api
+
+
+.. _pip: https://pip.pypa.io/en/stable/installing/#installing-with-get-pip-py
+.. _docker: https://www.docker.com/community-edition#/download
