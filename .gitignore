@@ -8,3 +8,4 @@ output
 backup
 *.secret.yml
 pgdata
+jsons.txt
