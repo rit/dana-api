@@ -45,13 +45,6 @@ def collection(slug):
 
 @app.route('/objects/<slug>/location')
 def object_location(slug):
-    c = Collection.__table__.columns
-    coll = select(c).where(c.slug == slug).cte(recursive=True)
-    coll_alias = coll.alias()
-    parents = Collection.__table__.alias()
-    coll = coll.union_all(select(parents.c).where(parents.c.slug == coll_alias.c.parent_slug))
-    # FIXME order by level
-    sql = select(coll.c).order_by(coll.c.slug)
-    res = db.session.execute(sql)
-    #TODO Make response smaller by returning only what needed by the UI
+    sql = sqltxt('sql/location.bound.sql')
+    res = db.session.execute(sql, dict(slug=slug))
     return jsonify(res.fetchall())
