@@ -13,5 +13,6 @@ singledispatch==3.4.0.3
 six==1.10.0
 SQLAlchemy==1.1.11
 toolz==0.8.2
+uWSGI==2.0.15
 yapf==0.16.2
 yargs==0.8.1

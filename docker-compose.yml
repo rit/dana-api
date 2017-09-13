@@ -16,7 +16,7 @@ services:
       FLASK_APP: dana.api.server
       YARGS_ENV: prod
     command:
-      python -m flask run --host=0.0.0.0
+      uwsgi dana-uwsgi.ini
     expose:
       - "5000"
     ports:
