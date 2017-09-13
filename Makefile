@@ -41,5 +41,8 @@ backup-dev-db:
 danapy_image:
 	docker build --rm -t danapy:v0.1 .
 
+nginx_image:
+	docker build -f Dockerfile.nginx --rm -t dana-nginx:v0.1 .
+
 push_iiif__to_dana_qa:
 	rsync -ruz iiif dana-qa:/var/dana/dana-api

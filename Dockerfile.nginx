@@ -1,0 +1,3 @@
+FROM nginx
+
+COPY deployment/dana-nginx.conf.template /etc/nginx/conf.d/dana-nginx.conf.template
