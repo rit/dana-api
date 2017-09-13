@@ -15,8 +15,7 @@ services:
     environment:
       FLASK_APP: dana.api.server
       YARGS_ENV: prod
-    command:
-      uwsgi dana-uwsgi.ini
+    command: ["./wait-for-it.sh", "db:5432", "--", "uwsgi", "dana-uwsgi.ini"]
     expose:
       - "5000"
     ports:
