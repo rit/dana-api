@@ -1,5 +1,6 @@
-WITH RECURSIVE locations(label, slug, parent_slug, depth) AS
+WITH RECURSIVE locations(label, doc, slug, parent_slug, depth) AS
   (SELECT label,
+          doc,
           slug,
           parent_slug,
           1
@@ -7,6 +8,7 @@ WITH RECURSIVE locations(label, slug, parent_slug, depth) AS
    WHERE slug = :slug
      UNION ALL
      SELECT c.label,
+            c.doc,
             c.slug,
             c.parent_slug,
             loc.depth + 1
