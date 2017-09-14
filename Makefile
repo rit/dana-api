@@ -44,5 +44,7 @@ danapy_image:
 nginx_image:
 	docker build -f Dockerfile.nginx --rm -t dana-nginx:v0.2 .
 
+docker_images: danapy_image nginx_image
+
 push_iiif__to_dana_qa:
 	rsync -ruz iiif dana-qa:/var/dana/dana-api
