@@ -5,11 +5,10 @@ services:
     depends_on:
       - api
     ports:
-      - "9000:80"
+      - "${NGINX_EXPOSE_PORT}:80"
     environment:
-      - NGINX_HOST=127.0.0.1.xip.io
-      - NGINX_PORT=80
-    command: /bin/bash -c "envsubst '$${NGINX_HOST},$${NGINX_PORT}'  < /etc/nginx/conf.d/dana-nginx.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+      - NGINX_HOST
+    command: /bin/bash -c "envsubst '$${NGINX_HOST}'  < /etc/nginx/conf.d/dana-nginx.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
   api:
     image: danapy:v0.1
     environment:
