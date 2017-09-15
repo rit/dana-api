@@ -2,6 +2,8 @@ version: "3"
 services:
   dana-nginx:
     image: dana-nginx:${TAG}
+    depends_on:
+      - api
     ports:
       - "${NGINX_EXPOSE_PORT}:80"
     volumes:
