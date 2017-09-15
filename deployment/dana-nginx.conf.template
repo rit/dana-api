@@ -5,9 +5,9 @@ server {
   access_log  /var/log/nginx/dana.access.log  main;
   error_log  /var/log/nginx/dana.error.log;
 
-  add_header Set-Cookie " ${IIIF_COOKIE}; domain=${NGINX_HOST}";
-
   location / {
+    add_header Set-Cookie " ${IIIF_COOKIE}; ";
+
     root /www;
     index  index.html index.htm;
   }

@@ -39,10 +39,10 @@ backup-dev-db:
 	pg_dump -Fc --no-acl --no-owner dana_api_dev > dana_api_dev.dump
 
 danapy_image:
-	docker build --rm -t danapy:v0.3.1 .
+	docker build --rm -t danapy:v0.3.2 .
 
 nginx_image:
-	docker build -f Dockerfile.nginx --rm -t dana-nginx:v0.3.1 .
+	docker build -f Dockerfile.nginx --rm -t dana-nginx:v0.3.2 .
 
 docker_images: danapy_image nginx_image
 
