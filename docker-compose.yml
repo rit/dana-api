@@ -2,15 +2,14 @@ version: "3"
 services:
   dana-nginx:
     image: dana-nginx:${TAG}
-    depends_on:
-      - api
     ports:
       - "${NGINX_EXPOSE_PORT}:80"
     volumes:
       - "${DANA_UI_DIST}:/www"
     environment:
       - NGINX_HOST
-    command: /bin/bash -c "envsubst '$${NGINX_HOST}'  < /etc/nginx/conf.d/dana-nginx.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+      - IIIF_COOKIE
+    command: /bin/bash -c "envsubst '$${NGINX_HOST},$${IIIF_COOKIE}'  < /etc/nginx/conf.d/dana-nginx.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
   api:
     image: danapy:${TAG}
     environment:
