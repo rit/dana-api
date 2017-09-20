@@ -51,6 +51,21 @@ We can then make use the jsons.txt like this::
 To test the API, open this url in the browser: http://localhost:5000/collections/2011m30
 
 
+Mirador for DANA
+----------------
+
+We need a patched version of mirador that supports ajax headers.
+
+Clone the repo::
+
+  git clone -b danazen https://github.com/rit/mirador.git
+
+
+Then create a symblink::
+
+  ln -s path/mirador/repo mirador
+
+
 Troubleshooting:
 ----------------
 
