@@ -39,7 +39,10 @@ def collectiontree(slug):
 
 @app.route('/collections/<slug>')
 def collection(slug):
-    doc = db.session.query(Collection).get(slug).doc
+    coll = db.session.query(Collection).get(slug)
+    doc = coll.doc
+    doc['_slug'] = coll.slug
+    doc['_root'] = !!coll.parent_slug
     return jsonify(doc)
 
 
