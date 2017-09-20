@@ -42,7 +42,7 @@ def collection(slug):
     coll = db.session.query(Collection).get(slug)
     doc = coll.doc
     doc['_slug'] = coll.slug
-    doc['_root'] = !!coll.parent_slug
+    doc['_root'] = bool(doc.parent_slug)
     return jsonify(doc)
 
 
