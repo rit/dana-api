@@ -8,6 +8,7 @@ services:
       - "${NGINX_EXPOSE_PORT}:80"
     volumes:
       - "${DANA_UI_DIST}:/www"
+      - "${MIRADOR_DIST}:/www/mirador"
     environment:
       - NGINX_HOST
       - IIIF_COOKIE

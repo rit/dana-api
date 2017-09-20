@@ -9,3 +9,4 @@ backup
 *.secret.yml
 pgdata
 jsons.txt
+mirador
