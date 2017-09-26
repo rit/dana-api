@@ -35,3 +35,15 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - "./pgdata:/var/lib/postgresql/data/pgdata"
+
+  mongodb:
+    image: mongo:3.4.9
+    volumes:
+      - "./annosdb:/data/db"
+  mango:
+    image: mango:v0.1.0
+    expose:
+      - "8080"
+    depends_on:
+      - mongodb
+    command: ['uwsgi', 'mango.ini']
