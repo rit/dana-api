@@ -1,3 +1,5 @@
+# NOTE: Run `make docker_images` after making changes
+
 server {
   listen 80;
   server_name ${NGINX_HOST};
@@ -7,13 +9,14 @@ server {
 
   location / {
     add_header Set-Cookie " ${IIIF_COOKIE}; ";
-
     root /www;
-    index  index.html index.htm;
+
+    # https://router.vuejs.org/en/essentials/history-mode.html
+    # Notice the leading "/" for /index.html
+    try_files $uri $uri/ /index.html;
   }
 
   location /mirador/ {
-    ssi on;
     alias /www/mirador/;
   }
 
