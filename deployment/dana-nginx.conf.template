@@ -28,6 +28,11 @@ server {
     proxy_cache_valid 200 24h;
     add_header X-Cache-Status $upstream_cache_status;
 
+    gzip on;
+    gzip_types text/plain application/json;
+    gzip_proxied no-cache no-store private expired auth;
+    gzip_min_length 1000;
+
     proxy_pass         http://api:5000/;
     proxy_redirect     off;
     proxy_set_header   Host                 $host;
