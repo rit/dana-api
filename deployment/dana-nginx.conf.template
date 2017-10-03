@@ -1,4 +1,7 @@
 # NOTE: Run `make docker_images` after making changes
+#
+proxy_cache_path /www/cache levels=2:2 keys_zone=default:3000m inactive=24h;
+proxy_temp_path /www/tmp;
 
 server {
   listen 80;
@@ -21,6 +24,10 @@ server {
   }
 
   location /api/v1/ {
+    proxy_cache default;
+    proxy_cache_valid 200 24h;
+    add_header X-Cache-Status $upstream_cache_status;
+
     proxy_pass         http://api:5000/;
     proxy_redirect     off;
     proxy_set_header   Host                 $host;
